@@ -105,32 +105,5 @@ public class Clientes {
 		}
 		return copia;
 	}
-	
-	public static void main(String args[]) {
-		//	public Cliente(String nombre, String dni, String correo, String telefono, LocalDate fechaNacimiento) {
-		Clientes cli = new Clientes(10);
-		LocalDate fecha = LocalDate.parse("1991-01-08");
-		Cliente cliente1 = new Cliente("abc","23305525Q","a@a.com","123123123",fecha);
-		Cliente cliente2 = new Cliente("abcd","04459757B","a@a.com","111333444",fecha);
 
-		Cliente[] clientes;
-		try {
-			cli.insertar(cliente1);
-			cli.insertar(cliente2);
-			cli.borrar(cliente1);
-		
-		} catch (OperationNotSupportedException | IllegalArgumentException | NullPointerException e ) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
-		}
-		System.out.println("hola");
-		
-		clientes = cli.get();
-		System.out.println(clientes.length);
-		for (Cliente c : clientes) {
-			System.out.println(c.toString());
-		}
-	
-	}
-	
 }

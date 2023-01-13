@@ -3,6 +3,8 @@ package org.iesalandalus.programacion.clientesempresa.vista;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.naming.OperationNotSupportedException;
+
 import org.iesalandalus.programacion.clientesempresa.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
@@ -60,13 +62,17 @@ public class Consola {
 		return cliente;
 	}
 	
-	public Cliente leerClienteDni() {
+	public static Cliente leerClienteDni() {
 		String dni;
 		Cliente buscado = null;
 		System.out.println("Introduzca el DNI del cliente a buscar");
 
 		dni = Entrada.cadena();
-		buscado = null; // donde busca? quien instancia Clientes
+		try {
+			buscado = new Cliente("sfd",dni,"a@a.a","123456789",LocalDate.parse("01/01/1111",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 		return buscado;
 	}
 	
@@ -87,21 +93,11 @@ public class Consola {
 			}
 		if (!fechaValida)
 			leerFechaNacimiento();
-	//		do {	} while (fechaValida != false);
+		
 		return fecha;
 		
 	}
 	
 	
-	public static void main(String args[]) {
-		
-		Opcion opt = Consola.elegirOpcion();
-		System.out.println(opt.toString());
-		LocalDate date;
-		Cliente cliente = Consola.leerCliente();
-		
-		System.out.println(cliente.toString());
-		//date = Consola.leerFechaNacimiento();
-		//System.out.println(date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-	} /**/
+
 }

@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Cliente {
-	private String ER_CORREO = "[A-Za-z0-9_-]+@[A-Za-z0-9]+.[A-Za-z0-9]+";
+	private String ER_CORREO = "[A-Za-z0-9]+@[A-Za-z0-9]+\\.[A-Za-z0-9]+";
 	private String ER_DNI = "(([0-9]{8})([A-Z|a-z]))";
 	private String ER_TELEFONO = "([0-9]{9})";
 	private String FORMATO_FECHA = "dd/MM/yyyy";
@@ -25,7 +25,7 @@ public class Cliente {
 		this.setTelefono(telefono);
 		this.setFechaNacimiento(fechaNacimiento);
 	}
-	
+	// ? 0 o 1 // + 1 o mas // * 0 o más
 	public Cliente(Cliente cliente) {
 		if (cliente == null) 
 			throw new NullPointerException("ERROR: No es posible copiar un cliente nulo.");
@@ -135,7 +135,7 @@ public class Cliente {
 		Pattern pattern = Pattern.compile(ER_TELEFONO);
 		Matcher matcher = pattern.matcher(telefono);
 		
-		if (matcher.find()) 
+		if (matcher.matches()) 
 			this.telefono = telefono;
 		else
 			throw new IllegalArgumentException("ERROR: El teléfono del cliente no tiene un formato válido.");
